@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container mt-4">
+<div class="container mt-5 bg-white">
     <h1>{{ $comic->title }}</h1>
 
     <div class="row">
