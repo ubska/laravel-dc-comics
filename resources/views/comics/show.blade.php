@@ -1,0 +1,1 @@
+<!-- pagina mostrerà i dettagli di un singolo fumetto -->
