@@ -33,19 +33,22 @@
                         <td>{{ $comic->sale_date }}</td>
                         <td>{{ $comic->type }}</td>
                         <td>
-                            <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-primary btn-sm">View</a>
+                            <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-primary btn-sm"><i
+                                    class="fa-solid fa-eye"></i></a>
                         </td>
 
                         <td>
                             <!-- Pulsante per modificare -->
-                            <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-warning"><i
+                                    class="fa-regular fa-pen-to-square"></i></a>
                         </td>
                         <td>
                             <form action="{{ route('comics.destroy', $comic->id) }}" method="POST"
                                 onsubmit="return confirm('Sicuro che vuoi eliminare il comics?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger"><i
+                                        class="fa-regular fa-trash-can"></i></button>
                             </form>
                         </td>
                     </tr>
