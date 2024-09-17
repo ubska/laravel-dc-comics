@@ -16,7 +16,7 @@
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea name="description" id="description" class="form-control" value="{{ $comic->description }}" required></textarea>
+                <textarea name="description" id="description" class="form-control" required>{{ $comic->description }}</textarea>
             </div>
 
 
