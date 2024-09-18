@@ -34,18 +34,19 @@ class ComicController extends Controller
     {
         $data = $request->validate(
             [
-                'title' => 'required|string|max:255',
-                'description' => 'required|string',
-                'thumb' => 'required|string',
-                'price' => 'required|string',
-                'series' => 'required|string',
-                'sale_date' => 'required|date',
-                'type' => 'required|string',
+                'title' => 'required|string||min:2|max:255',
+                'description' => 'required|string|min:2',
+                'thumb' => 'required|string|min:2',
+                'price' => 'required|string|min:2',
+                'series' => 'required|string|min:2',
+                'sale_date' => 'required|date|min:2',
+                'type' => 'required|string|min:2',
             ],
             [
                 'title.required' => 'Il titolo è obbligatorio.',
                 'title.string' => 'Il titolo deve essere una stringa.',
                 'title.max' => 'Il titolo non può superare i 255 caratteri.',
+                'title.min' => 'Il titolo deve avere almeno due caratteri.',
                 'description.required' => 'La descrizione è obbligatoria.',
                 'description.string' => 'La descrizione deve essere una stringa.',
                 'thumb.required' => 'Il thumbnail è obbligatorio.',
@@ -88,25 +89,30 @@ class ComicController extends Controller
         $data = $request->validate(
             [
                 'title' => 'required|string|max:255',
-                'description' => 'required|string',
-                'thumb' => 'required|string',
-                'price' => 'required|string',
-                // 'series' => 'required|string',
-                // 'sale_date' => 'required|date',
-                // 'type' => 'required|string',
+                'description' => 'required|string|min:2',
+                'thumb' => 'required|string|min:2',
+                'price' => 'required|string|min:2',
+                'series' => 'required|string|min:2',
+                'sale_date' => 'required|date|min:2',
+                'type' => 'required|string|min:2',
             ],
             [
                 'title.required' => 'Il titolo è obbligatorio.',
                 'title.string' => 'Il titolo deve essere una stringa.',
                 'title.max' => 'Il titolo non può superare i 255 caratteri.',
+                'title.min' => 'Il titolo deve avere almeno due caratteri.',
                 'description.required' => 'La descrizione è obbligatoria.',
                 'description.string' => 'La descrizione deve essere una stringa.',
+                'description.min' => 'La descrizione deve avere piu caratteri.',
                 'thumb.required' => 'Il thumbnail è obbligatorio.',
+                'thumb.min' => 'Il thumbnail deve avere almeno 2 caratteri.',
                 'thumb.string' => 'Il thumbnail deve essere una stringa.',
                 'price.required' => 'Il prezzo è obbligatorio.',
                 'price.string' => 'Il prezzo deve essere una stringa.',
+                'price.min' => 'Il prezzo deve avere almeno 2 caratteri.',
                 'type.required' => 'Il tipo è obbligatorio.',
                 'type.string' => 'Il tipo deve essere una stringa.',
+                'series.min' => 'La serie deve avere almeno 2 caratteri.',
             ]
         );
         $comic = Comic::find($id);
