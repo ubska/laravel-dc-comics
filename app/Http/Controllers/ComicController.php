@@ -32,15 +32,30 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'thumb' => 'required|string',
-            'price' => 'required|string',
-            'series' => 'required|string',
-            'sale_date' => 'required|date',
-            'type' => 'required|string',
-        ]);
+        $data = $request->validate(
+            [
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'thumb' => 'required|string',
+                'price' => 'required|string',
+                'series' => 'required|string',
+                'sale_date' => 'required|date',
+                'type' => 'required|string',
+            ],
+            [
+                'title.required' => 'Il titolo è obbligatorio.',
+                'title.string' => 'Il titolo deve essere una stringa.',
+                'title.max' => 'Il titolo non può superare i 255 caratteri.',
+                'description.required' => 'La descrizione è obbligatoria.',
+                'description.string' => 'La descrizione deve essere una stringa.',
+                'thumb.required' => 'Il thumbnail è obbligatorio.',
+                'thumb.string' => 'Il thumbnail deve essere una stringa.',
+                'price.required' => 'Il prezzo è obbligatorio.',
+                'price.string' => 'Il prezzo deve essere una stringa.',
+                'type.required' => 'Il tipo è obbligatorio.',
+                'type.string' => 'Il tipo deve essere una stringa.',
+            ]
+        );
 
         $comic = Comic::create($data);
 
@@ -69,9 +84,34 @@ class ComicController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
+        $data = $request->validate(
+            [
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'thumb' => 'required|string',
+                'price' => 'required|string',
+                // 'series' => 'required|string',
+                // 'sale_date' => 'required|date',
+                // 'type' => 'required|string',
+            ],
+            [
+                'title.required' => 'Il titolo è obbligatorio.',
+                'title.string' => 'Il titolo deve essere una stringa.',
+                'title.max' => 'Il titolo non può superare i 255 caratteri.',
+                'description.required' => 'La descrizione è obbligatoria.',
+                'description.string' => 'La descrizione deve essere una stringa.',
+                'thumb.required' => 'Il thumbnail è obbligatorio.',
+                'thumb.string' => 'Il thumbnail deve essere una stringa.',
+                'price.required' => 'Il prezzo è obbligatorio.',
+                'price.string' => 'Il prezzo deve essere una stringa.',
+                'type.required' => 'Il tipo è obbligatorio.',
+                'type.string' => 'Il tipo deve essere una stringa.',
+            ]
+        );
         $comic = Comic::find($id);
-        $comic->update($request->all());
-        return redirect()->route('comics.index')->with('success', 'Comic updated successfully');
+        $comic->update($data);
+        return redirect()->route('comics.index')->with('success', 'Comics modificato con successo');
     }
 
     /**
@@ -82,6 +122,6 @@ class ComicController extends Controller
         $comic = Comic::find($id);
         $comic->delete();
 
-        return redirect()->route('comics.index')->with('success', 'Comic deleted successfully');
+        return redirect()->route('comics.index')->with('success', 'Comic eliminato con successo');
     }
 }
